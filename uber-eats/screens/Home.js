@@ -1,12 +1,15 @@
-import React from "react";
-import { View, Text, SafeAreaView, ScrollView } from "react-native";
+import React, { useState } from "react";
+import { View, SafeAreaView, ScrollView } from "react-native";
 import Categories from "../components/Categories";
 import HeaderTab from "../components/HeaderTab";
-import RestaurantItems from "../components/RestaurantItems";
+import RestaurantItems, {
+  localRestaurants,
+} from "../components/RestaurantItems";
 import SearchBar from "../components/SearchBar";
 import GlobalStyles from "../GlobalStyles";
 
 export default function Home() {
+  const [restaurantData, setrestaurantData] = useState(localRestaurants);
   return (
     /* SafeAreaView does not work with android. Hence the Global Style */
     <SafeAreaView style={GlobalStyles.androidSafeArea}>
@@ -16,7 +19,7 @@ export default function Home() {
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Categories />
-        <RestaurantItems />
+        <RestaurantItems restaurantData={restaurantData} />
       </ScrollView>
     </SafeAreaView>
   );
